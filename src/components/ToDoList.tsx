@@ -3,26 +3,31 @@ const ToDoList = () => {
     {
       id: 1,
       text: 'Create a to do list',
-      complete: true,
+      status: 'Complete',
     },
     {
       id: 2,
       text: 'Do some Simran',
-      complete: false,
+      status: 'In Progress',
     },
   ];
+
   return (
     <div>
       <h1 className='text-3xl font-bold'>To Do List</h1>
       <ul>
         {toDos.map((toDo) => (
           <li>
-            <input
-              type='checkbox'
+            <label htmlFor={toDo.id.toString()}>{toDo.text}</label>
+            <select
+              defaultValue={toDo.status}
               id={toDo.id.toString()}
-              name={toDo.id.toString()}
-            />
-            <label htmlFor='vehicle1'>{toDo.text}</label>
+              name='status'
+            >
+              <option value='Not Started'>Not Started</option>
+              <option value='In Progress'>In Progress</option>
+              <option value='Complete'>Complete</option>
+            </select>
           </li>
         ))}
       </ul>
