@@ -1,3 +1,6 @@
+import DropdownMenu from './DropdownMenu';
+import { ArrowsUpDownIcon } from '@heroicons/react/24/outline';
+
 const ToDoList = () => {
   const toDos = [
     {
@@ -15,6 +18,34 @@ const ToDoList = () => {
   return (
     <div>
       <h1 className='text-3xl font-bold'>To Do List</h1>
+
+      <DropdownMenu>
+        <DropdownMenu.Button>
+          Sort
+          <ArrowsUpDownIcon />
+        </DropdownMenu.Button>
+        <DropdownMenu.Items>
+          <DropdownMenu.Item as='button' href='#'>
+            Name (ascending)
+          </DropdownMenu.Item>
+          <DropdownMenu.Item as='button' href='#'>
+            Name (descending)
+          </DropdownMenu.Item>
+          <DropdownMenu.Item as='button' href='#'>
+            Due date (ascending)
+          </DropdownMenu.Item>
+          <DropdownMenu.Item as='button' href='#'>
+            Due date (descending)
+          </DropdownMenu.Item>
+          <DropdownMenu.Item as='button' href='#'>
+            Status (ascending)
+          </DropdownMenu.Item>
+          <DropdownMenu.Item as='button' href='#'>
+            Status (descending)
+          </DropdownMenu.Item>
+        </DropdownMenu.Items>
+      </DropdownMenu>
+
       <ul>
         {toDos.map((toDo) => (
           <li>
