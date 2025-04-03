@@ -1,3 +1,4 @@
+import { FunnelIcon } from '@heroicons/react/24/outline';
 import DropdownMenu from './DropdownMenu';
 import { ArrowsUpDownIcon } from '@heroicons/react/24/outline';
 
@@ -20,7 +21,19 @@ const ToDoList = () => {
   return (
     <div>
       <h1 className='text-3xl font-bold'>To Do List</h1>
-
+      <DropdownMenu>
+        <DropdownMenu.Button>
+          Filter
+          <FunnelIcon className='size-5' />
+        </DropdownMenu.Button>
+        <DropdownMenu.Items>
+          {statuses.map((status) => (
+            <DropdownMenu.Item as='button' href='#'>
+              {status}
+            </DropdownMenu.Item>
+          ))}
+        </DropdownMenu.Items>
+      </DropdownMenu>
       <DropdownMenu>
         <DropdownMenu.Button>
           Sort
