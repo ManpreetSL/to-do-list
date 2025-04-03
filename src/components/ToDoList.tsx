@@ -1,6 +1,8 @@
 import DropdownMenu from './DropdownMenu';
 import { ArrowsUpDownIcon } from '@heroicons/react/24/outline';
 
+const statuses = ['Not Started', 'In Progress', 'Complete'];
+
 const ToDoList = () => {
   const toDos = [
     {
@@ -55,9 +57,9 @@ const ToDoList = () => {
               id={toDo.id.toString()}
               name='status'
             >
-              <option value='Not Started'>Not Started</option>
-              <option value='In Progress'>In Progress</option>
-              <option value='Complete'>Complete</option>
+              {statuses.map((status) => (
+                <option value={status}>{status}</option>
+              ))}
             </select>
           </li>
         ))}
