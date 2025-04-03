@@ -37,7 +37,7 @@ const ToDoList = () => {
       <DropdownMenu>
         <DropdownMenu.Button>
           Sort
-          <ArrowsUpDownIcon />
+          <ArrowsUpDownIcon className='size-5' />
         </DropdownMenu.Button>
         <DropdownMenu.Items>
           <DropdownMenu.Item as='button' href='#'>
