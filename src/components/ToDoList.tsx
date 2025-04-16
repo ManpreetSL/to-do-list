@@ -10,11 +10,13 @@ const ToDoList = () => {
       id: 1,
       text: 'Create a to do list',
       status: 'Complete',
+      dueDate: new Date(Date.now() - 60 * 60 * 1000),
     },
     {
       id: 2,
       text: 'Do some Simran',
       status: 'In Progress',
+      dueDate: new Date(Date.now() + 24 * 60 * 60 * 1000),
     },
   ];
 
@@ -65,6 +67,16 @@ const ToDoList = () => {
         {toDos.map((toDo) => (
           <li>
             <label htmlFor={toDo.id.toString()}>{toDo.text}</label>
+            <br />
+            <span>
+              {toDo.dueDate.toLocaleDateString(undefined, {
+                weekday: 'short',
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+              })}
+            </span>
+            <br />
             <select
               defaultValue={toDo.status}
               id={toDo.id.toString()}
