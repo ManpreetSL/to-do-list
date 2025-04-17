@@ -1,6 +1,7 @@
 import { FunnelIcon } from '@heroicons/react/24/outline';
 import DropdownMenu from './DropdownMenu';
 import { ArrowsUpDownIcon } from '@heroicons/react/24/outline';
+import Card from './Card';
 
 const statuses = ['Not Started', 'In Progress', 'Complete'];
 
@@ -66,26 +67,29 @@ const ToDoList = () => {
       <ul>
         {toDos.map((toDo) => (
           <li>
-            <label htmlFor={toDo.id.toString()}>{toDo.text}</label>
-            <br />
-            <span>
-              {toDo.dueDate.toLocaleDateString(undefined, {
-                weekday: 'short',
-                year: 'numeric',
-                month: 'short',
-                day: 'numeric',
-              })}
-            </span>
-            <br />
-            <select
-              defaultValue={toDo.status}
-              id={toDo.id.toString()}
-              name='status'
-            >
-              {statuses.map((status) => (
-                <option value={status}>{status}</option>
-              ))}
-            </select>
+            <Card>
+              <Card.Title>
+                <label htmlFor={toDo.id.toString()}>{toDo.text}</label>
+              </Card.Title>
+              <span>
+                {toDo.dueDate.toLocaleDateString(undefined, {
+                  weekday: 'short',
+                  year: 'numeric',
+                  month: 'short',
+                  day: 'numeric',
+                })}
+              </span>
+              <br />
+              <select
+                defaultValue={toDo.status}
+                id={toDo.id.toString()}
+                name='status'
+              >
+                {statuses.map((status) => (
+                  <option value={status}>{status}</option>
+                ))}
+              </select>
+            </Card>
           </li>
         ))}
       </ul>
