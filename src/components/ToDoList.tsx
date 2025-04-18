@@ -2,10 +2,19 @@ import { FunnelIcon } from '@heroicons/react/24/outline';
 import DropdownMenu from './DropdownMenu';
 import { ArrowsUpDownIcon } from '@heroicons/react/24/outline';
 import Card from './Card';
+import SearchBar from './SearchBar';
+import { useState } from 'react';
 
 const statuses = ['Not Started', 'In Progress', 'Complete'];
 
 const ToDoList = () => {
+  const [searchInput, setSearchInput] = useState('');
+
+  const handleSearchInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    setSearchInput(value);
+  };
+
   const toDos = [
     {
       id: 1,
@@ -24,6 +33,10 @@ const ToDoList = () => {
   return (
     <div>
       <h1 className='text-3xl font-bold'>To Do List</h1>
+      <SearchBar
+        value={searchInput}
+        onSearchInputChange={handleSearchInputChange}
+      />
       <DropdownMenu>
         <DropdownMenu.Button>
           Filter
