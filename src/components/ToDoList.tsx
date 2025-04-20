@@ -4,6 +4,7 @@ import { ArrowsUpDownIcon } from '@heroicons/react/24/outline';
 import Card from './Card';
 import SearchBar from './SearchBar';
 import { useState } from 'react';
+import AddTaskBar from './AddTaskBar';
 
 const statuses = ['Not Started', 'In Progress', 'Complete'];
 
@@ -106,6 +107,8 @@ const ToDoList = () => {
           </li>
         ))}
       </ul>
+
+      <AddTaskBar />
     </div>
   );
 };
