@@ -10,6 +10,7 @@ const statuses = ['Not Started', 'In Progress', 'Complete'];
 
 const ToDoList = () => {
   const [searchInput, setSearchInput] = useState('');
+  const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
 
   const handleSearchInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
@@ -108,7 +109,7 @@ const ToDoList = () => {
         ))}
       </ul>
 
-      <AddTaskBar />
+      <AddTaskBar date={date} handleDateChange={setDate} />
     </div>
   );
 };

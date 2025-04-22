@@ -1,13 +1,15 @@
 import { PlusIcon } from '@heroicons/react/24/solid';
-import { CalendarIcon } from '@heroicons/react/24/solid';
 import { FormEvent } from 'react';
+import DatePicker from './DatePicker';
 
 type Props = {
   value: string;
   onAddTask: (e: FormEvent<HTMLFormElement>) => void;
+  date: string;
+  handleDateChange: (date: string) => void;
 };
 
-const AddTaskBar = ({ value, onAddTask }: Props) => {
+const AddTaskBar = ({ value, onAddTask, date, handleDateChange }: Props) => {
   return (
     <div className='relative py-2 my-2'>
       <form onSubmit={onAddTask}>
@@ -17,8 +19,8 @@ const AddTaskBar = ({ value, onAddTask }: Props) => {
           value={value}
         />
 
-        <PlusIcon className='lucide lucide-search absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground w-4 h-4' />
-        <CalendarIcon className='lucide lucide-search absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground w-4 h-4' />
+        <PlusIcon className='absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground w-4 h-4' />
+        <DatePicker date={date} onChange={handleDateChange} />
       </form>
     </div>
   );
