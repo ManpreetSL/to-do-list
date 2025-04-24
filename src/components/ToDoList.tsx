@@ -5,32 +5,34 @@ import Card from './Card';
 import SearchBar from './SearchBar';
 import { useState } from 'react';
 import AddTaskBar from './AddTaskBar';
+import { v4 as uuidv4 } from 'uuid';
 
 const statuses = ['Not Started', 'In Progress', 'Complete'];
+const defaultToDos = [
+  {
+    id: uuidv4(),
+    text: 'Create a to do list',
+    status: 'Complete',
+    dueDate: new Date(Date.now() - 60 * 60 * 1000),
+  },
+  {
+    id: uuidv4(),
+    text: 'Do some Simran',
+    status: 'In Progress',
+    dueDate: new Date(Date.now() + 24 * 60 * 60 * 1000),
+  },
+];
 
 const ToDoList = () => {
+  const [toDos, setToDos] = useState(defaultToDos);
   const [searchInput, setSearchInput] = useState('');
+  const [newTaskName, setNewTaskName] = useState('');
   const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
 
   const handleSearchInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     setSearchInput(value);
   };
-
-  const toDos = [
-    {
-      id: 1,
-      text: 'Create a to do list',
-      status: 'Complete',
-      dueDate: new Date(Date.now() - 60 * 60 * 1000),
-    },
-    {
-      id: 2,
-      text: 'Do some Simran',
-      status: 'In Progress',
-      dueDate: new Date(Date.now() + 24 * 60 * 60 * 1000),
-    },
-  ];
 
   return (
     <div>
@@ -46,7 +48,7 @@ const ToDoList = () => {
         </DropdownMenu.Button>
         <DropdownMenu.Items>
           {statuses.map((status) => (
-            <DropdownMenu.Item as='button' href='#'>
+            <DropdownMenu.Item as='button' href='#' key={status}>
               {status}
             </DropdownMenu.Item>
           ))}
@@ -109,7 +111,25 @@ const ToDoList = () => {
         ))}
       </ul>
 
-      <AddTaskBar date={date} handleDateChange={setDate} />
+      <AddTaskBar
+        value={newTaskName}
+        date={date}
+        handleTaskNameChange={setNewTaskName}
+        handleDateChange={setDate}
+        onAddTask={(e) => {
+          e.preventDefault();
+          console.log({ newTaskName, date });
+          setToDos([
+            ...toDos,
+            {
+              id: uuidv4(),
+              text: newTaskName,
+              dueDate: new Date(date),
+              status: 'Not Started',
+            },
+          ]);
+        }}
+      />
     </div>
   );
 };
