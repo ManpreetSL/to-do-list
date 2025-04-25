@@ -7,8 +7,15 @@ import { useState } from 'react';
 import AddTaskBar from './AddTaskBar';
 import { v4 as uuidv4 } from 'uuid';
 
+type ToDo = {
+  id: string;
+  text: string;
+  status: string;
+  dueDate: Date;
+};
+
 const statuses = ['Not Started', 'In Progress', 'Complete'];
-const defaultToDos = [
+const defaultToDos: ToDo[] = [
   {
     id: uuidv4(),
     text: 'Create a to do list',
@@ -20,6 +27,32 @@ const defaultToDos = [
     text: 'Do some Simran',
     status: 'In Progress',
     dueDate: new Date(Date.now() + 24 * 60 * 60 * 1000),
+  },
+];
+const sortOptions = [
+  {
+    name: 'Name (ascending)',
+    fn: (a: ToDo, b: ToDo) => a.text.localeCompare(b.text),
+  },
+  {
+    name: 'Name (descending)',
+    fn: (a: ToDo, b: ToDo) => b.text.localeCompare(a.text),
+  },
+  {
+    name: 'Due date (ascending)',
+    fn: (a: ToDo, b: ToDo) => a.dueDate.getTime() - b.dueDate.getTime(),
+  },
+  {
+    name: 'Due date (descending)',
+    fn: (a: ToDo, b: ToDo) => b.dueDate.getTime() - a.dueDate.getTime(),
+  },
+  {
+    name: 'Status (ascending)',
+    fn: (a: ToDo, b: ToDo) => a.status.localeCompare(b.status),
+  },
+  {
+    name: 'Status (descending)',
+    fn: (a: ToDo, b: ToDo) => b.status.localeCompare(a.status),
   },
 ];
 
@@ -60,30 +93,25 @@ const ToDoList = () => {
           <ArrowsUpDownIcon className='size-5' />
         </DropdownMenu.Button>
         <DropdownMenu.Items>
-          <DropdownMenu.Item as='button' href='#'>
-            Name (ascending)
-          </DropdownMenu.Item>
-          <DropdownMenu.Item as='button' href='#'>
-            Name (descending)
-          </DropdownMenu.Item>
-          <DropdownMenu.Item as='button' href='#'>
-            Due date (ascending)
-          </DropdownMenu.Item>
-          <DropdownMenu.Item as='button' href='#'>
-            Due date (descending)
-          </DropdownMenu.Item>
-          <DropdownMenu.Item as='button' href='#'>
-            Status (ascending)
-          </DropdownMenu.Item>
-          <DropdownMenu.Item as='button' href='#'>
-            Status (descending)
-          </DropdownMenu.Item>
+          {sortOptions.map((option) => (
+            <DropdownMenu.Item
+              as='button'
+              href='#'
+              key={option.name}
+              onClick={(a) => {
+                setToDos([...toDos].sort(option.fn));
+                console.log('onClick', { a, option });
+              }}
+            >
+              {option.name}
+            </DropdownMenu.Item>
+          ))}
         </DropdownMenu.Items>
       </DropdownMenu>
 
       <ul>
         {toDos.map((toDo) => (
-          <li>
+          <li key={toDo.id}>
             <Card>
               <Card.Title>
                 <label htmlFor={toDo.id.toString()}>{toDo.text}</label>
