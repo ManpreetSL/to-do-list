@@ -118,7 +118,6 @@ const ToDoList = () => {
         handleDateChange={setDate}
         onAddTask={(e) => {
           e.preventDefault();
-          console.log({ newTaskName, date });
           setToDos([
             ...toDos,
             {
