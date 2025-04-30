@@ -98,9 +98,8 @@ const ToDoList = () => {
               as='button'
               href='#'
               key={option.name}
-              onClick={(a) => {
+              onClick={() => {
                 setToDos([...toDos].sort(option.fn));
-                console.log('onClick', { a, option });
               }}
             >
               {option.name}
