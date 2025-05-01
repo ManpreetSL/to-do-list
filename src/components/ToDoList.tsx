@@ -130,7 +130,9 @@ const ToDoList = () => {
                 name='status'
               >
                 {statuses.map((status) => (
-                  <option value={status}>{status}</option>
+                  <option value={status} key={status}>
+                    {status}
+                  </option>
                 ))}
               </select>
             </Card>
