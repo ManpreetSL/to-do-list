@@ -61,6 +61,7 @@ const ToDoList = () => {
   const [searchInput, setSearchInput] = useState('');
   const [newTaskName, setNewTaskName] = useState('');
   const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
+  const [filter, setFilter] = useState<string | null>(null);
 
   const handleSearchInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
@@ -81,7 +82,14 @@ const ToDoList = () => {
         </DropdownMenu.Button>
         <DropdownMenu.Items>
           {statuses.map((status) => (
-            <DropdownMenu.Item as='button' href='#' key={status}>
+            <DropdownMenu.Item
+              as='button'
+              href='#'
+              key={status}
+              onClick={() => {
+                setFilter(status);
+              }}
+            >
               {status}
             </DropdownMenu.Item>
           ))}
@@ -109,7 +117,10 @@ const ToDoList = () => {
       </DropdownMenu>
 
       <ul>
-        {toDos.map((toDo) => (
+        {(filter
+          ? [...toDos].filter((toDo) => toDo.status === filter)
+          : toDos
+        ).map((toDo) => (
           <li key={toDo.id}>
             <Card>
               <Card.Title>
