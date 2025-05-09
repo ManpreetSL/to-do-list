@@ -1,11 +1,11 @@
 import {
   Menu as HeadlessMenu,
-  MenuButton as HeadlessMenuButton,
   MenuItems as HeadlessMenuItems,
   MenuItem as HeadlessMenuItem,
 } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/24/solid';
 import { ElementType, ReactNode } from 'react';
+import Button from './Button';
 
 type DropdownMenuProps = { children: ReactNode };
 
@@ -19,13 +19,13 @@ const DropdownMenu = ({ children }: DropdownMenuProps) => {
 
 type DropdownMenuButtonProps = { children: ReactNode };
 DropdownMenu.Button = ({ children }: DropdownMenuButtonProps) => (
-  <HeadlessMenuButton className='inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 shadow-xs ring-gray-300 ring-inset hover:bg-gray-50'>
+  <Button>
     {children}
     <ChevronDownIcon
       aria-hidden='true'
       className='-mr-1 size-5 text-gray-400'
     />
-  </HeadlessMenuButton>
+  </Button>
 );
 
 DropdownMenu.Items = ({ children }: { children: ReactNode }) => (
