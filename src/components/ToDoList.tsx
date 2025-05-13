@@ -1,4 +1,4 @@
-import { FunnelIcon } from '@heroicons/react/24/outline';
+import { FunnelIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import DropdownMenu from './DropdownMenu';
 import { ArrowsUpDownIcon } from '@heroicons/react/24/outline';
 import Card from './Card';
@@ -6,6 +6,7 @@ import SearchBar from './SearchBar';
 import { useState } from 'react';
 import AddTaskBar from './AddTaskBar';
 import { v4 as uuidv4 } from 'uuid';
+import Button from './Button';
 
 type ToDo = {
   id: string;
@@ -69,52 +70,68 @@ const ToDoList = () => {
   };
 
   return (
-    <div>
+    <div className='flex flex-col gap-y-2 items-center'>
       <h1 className='text-3xl font-bold'>To Do List</h1>
       <SearchBar
         value={searchInput}
         onSearchInputChange={handleSearchInputChange}
       />
-      <DropdownMenu>
-        <DropdownMenu.Button>
-          Filter
-          <FunnelIcon className='size-5' />
-        </DropdownMenu.Button>
-        <DropdownMenu.Items>
-          {statuses.map((status) => (
-            <DropdownMenu.Item
-              as='button'
-              href='#'
-              key={status}
-              onClick={() => {
-                setFilter(status);
-              }}
-            >
-              {status}
-            </DropdownMenu.Item>
-          ))}
-        </DropdownMenu.Items>
-      </DropdownMenu>
-      <DropdownMenu>
-        <DropdownMenu.Button>
-          Sort
-          <ArrowsUpDownIcon className='size-5' />
-        </DropdownMenu.Button>
-        <DropdownMenu.Items>
-          {sortOptions.map((option) => (
-            <DropdownMenu.Item
-              as='button'
-              href='#'
-              key={option.name}
-              onClick={() => {
-                setToDos([...toDos].sort(option.fn));
-              }}
-            >
-              {option.name}
-            </DropdownMenu.Item>
-          ))}
-        </DropdownMenu.Items>
-      </DropdownMenu>
+      <div>
+        <DropdownMenu>
+          <DropdownMenu.Button>
+            Filter
+            <FunnelIcon className='size-5' />
+          </DropdownMenu.Button>
+          <DropdownMenu.Items>
+            {statuses.map((status) => (
+              <DropdownMenu.Item
+                as='button'
+                href='#'
+                key={status}
+                onClick={() => {
+                  setFilter(status);
+                }}
+              >
+                {status}
+              </DropdownMenu.Item>
+            ))}
+          </DropdownMenu.Items>
+        </DropdownMenu>
+        <DropdownMenu>
+          <DropdownMenu.Button>
+            Sort
+            <ArrowsUpDownIcon className='size-5' />
+          </DropdownMenu.Button>
+          <DropdownMenu.Items>
+            {sortOptions.map((option) => (
+              <DropdownMenu.Item
+                as='button'
+                href='#'
+                key={option.name}
+                onClick={() => {
+                  setToDos([...toDos].sort(option.fn));
+                }}
+              >
+                {option.name}
+              </DropdownMenu.Item>
+            ))}
+          </DropdownMenu.Items>
+        </DropdownMenu>
+      </div>
+
+      {filter && (
+        <Button
+          onClick={() => {
+            setFilter(null);
+          }}
+        >
+          {filter}
+          <XMarkIcon
+            aria-hidden='true'
+            className='-mr-1 size-5 text-gray-400'
+          />
+        </Button>
+      )}
 
       <ul>
         {(filter

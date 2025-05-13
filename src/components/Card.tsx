@@ -2,7 +2,7 @@ type Props = { children: React.ReactNode };
 
 const Card = ({ children }: Props) => {
   return (
-    <div className='rounded-xl my-4 p-6 shadow-lg ring ring-black/5 hover:ring-black/10'>
+    <div className='rounded-xl m-4 py-8 px-10 shadow-lg ring ring-black/5 hover:ring-black/10'>
       {children}
     </div>
   );
