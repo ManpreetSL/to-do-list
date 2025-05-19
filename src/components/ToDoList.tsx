@@ -184,6 +184,7 @@ const ToDoList = () => {
               status: 'Not Started',
             },
           ]);
+          setNewTaskName('');
         }}
       />
     </div>
