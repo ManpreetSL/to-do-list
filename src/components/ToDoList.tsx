@@ -134,38 +134,44 @@ const ToDoList = () => {
       )}
 
       <ul>
-        {(filter
-          ? [...toDos].filter((toDo) => toDo.status === filter)
-          : toDos
-        ).map((toDo) => (
-          <li key={toDo.id}>
-            <Card>
-              <Card.Title>
-                <label htmlFor={toDo.id.toString()}>{toDo.text}</label>
-              </Card.Title>
-              <span>
-                {toDo.dueDate.toLocaleDateString(undefined, {
-                  weekday: 'short',
-                  year: 'numeric',
-                  month: 'short',
-                  day: 'numeric',
-                })}
-              </span>
-              <br />
-              <select
-                defaultValue={toDo.status}
-                id={toDo.id.toString()}
-                name='status'
-              >
-                {statuses.map((status) => (
-                  <option value={status} key={status}>
-                    {status}
-                  </option>
-                ))}
-              </select>
-            </Card>
-          </li>
-        ))}
+        {toDos
+          .filter((toDo) => !filter || toDo.status === filter)
+          .filter(
+            (toDo) =>
+              !searchInput ||
+              toDo.text
+                .toLocaleLowerCase()
+                .includes(searchInput.toLocaleLowerCase())
+          )
+          .map((toDo) => (
+            <li key={toDo.id}>
+              <Card>
+                <Card.Title>
+                  <label htmlFor={toDo.id.toString()}>{toDo.text}</label>
+                </Card.Title>
+                <span>
+                  {toDo.dueDate.toLocaleDateString(undefined, {
+                    weekday: 'short',
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                  })}
+                </span>
+                <br />
+                <select
+                  defaultValue={toDo.status}
+                  id={toDo.id.toString()}
+                  name='status'
+                >
+                  {statuses.map((status) => (
+                    <option value={status} key={status}>
+                      {status}
+                    </option>
+                  ))}
+                </select>
+              </Card>
+            </li>
+          ))}
       </ul>
 
       <AddTaskBar
