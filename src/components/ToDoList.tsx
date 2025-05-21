@@ -64,17 +64,12 @@ const ToDoList = () => {
   const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
   const [filter, setFilter] = useState<string | null>(null);
 
-  const handleSearchInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-    setSearchInput(value);
-  };
-
   return (
     <div className='flex flex-col gap-y-2 items-center'>
       <h1 className='text-3xl font-bold'>To Do List</h1>
       <SearchBar
         value={searchInput}
-        onSearchInputChange={handleSearchInputChange}
+        onSearchInputChange={(value) => setSearchInput(value)}
       />
       <div>
         <DropdownMenu>
