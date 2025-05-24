@@ -7,13 +7,7 @@ import { useState } from 'react';
 import AddTaskBar from './AddTaskBar';
 import { v4 as uuidv4 } from 'uuid';
 import Button from './Button';
-
-type ToDo = {
-  id: string;
-  text: string;
-  status: string;
-  dueDate: Date;
-};
+import { ToDo } from '../types';
 
 const statuses = ['Not Started', 'In Progress', 'Complete'];
 const defaultToDos: ToDo[] = [
