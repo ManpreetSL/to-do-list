@@ -98,7 +98,7 @@ const ToDoList = () => {
                 href='#'
                 key={option.name}
                 onClick={() => {
-                  setToDos([...toDos].sort(option.fn));
+                  setToDos((prevToDos) => [...prevToDos].sort(option.fn));
                 }}
               >
                 {option.name}
@@ -170,8 +170,8 @@ const ToDoList = () => {
         handleDateChange={setDate}
         onAddTask={(e) => {
           e.preventDefault();
-          setToDos([
-            ...toDos,
+          setToDos((prevToDos) => [
+            ...prevToDos,
             {
               id: uuidv4(),
               text: newTaskName,
