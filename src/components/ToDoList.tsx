@@ -8,6 +8,7 @@ import AddTaskBar from './AddTaskBar';
 import { v4 as uuidv4 } from 'uuid';
 import Button from './Button';
 import { ToDo } from '../types';
+import useToDos from '../hooks/useToDos';
 
 const statuses = ['Not Started', 'In Progress', 'Complete'];
 const defaultToDos: ToDo[] = [
@@ -52,7 +53,7 @@ const sortOptions = [
 ];
 
 const ToDoList = () => {
-  const [toDos, setToDos] = useState(defaultToDos);
+  const [toDos, setToDos] = useToDos();
   const [searchInput, setSearchInput] = useState('');
   const [newTaskName, setNewTaskName] = useState('');
   const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
@@ -123,7 +124,7 @@ const ToDoList = () => {
       )}
 
       <ul>
-        {toDos
+        {(toDos ?? defaultToDos)
           .filter((toDo) => !filter || toDo.status === filter)
           .filter(
             (toDo) =>

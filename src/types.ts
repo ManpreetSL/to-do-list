@@ -4,3 +4,10 @@ export type ToDo = {
   status: string;
   dueDate: Date;
 };
+
+export type SerialisedToDo = {
+  id: string;
+  text: string;
+  status: string;
+  dueDate: string;
+};
