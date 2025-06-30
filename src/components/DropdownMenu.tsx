@@ -19,7 +19,7 @@ const DropdownMenu = ({ children }: DropdownMenuProps) => {
 
 type DropdownMenuButtonProps = { children: ReactNode };
 DropdownMenu.Button = ({ children }: DropdownMenuButtonProps) => (
-  <HeadlessMenuButton className='inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 shadow-xs ring-gray-300 ring-inset hover:bg-gray-50'>
+  <HeadlessMenuButton className='inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white dark:bg-slate-700 px-3 py-2 text-sm font-semibold text-gray-900 dark:text-white ring-1 shadow-xs ring-gray-300 dark:ring-slate-500 ring-inset hover:bg-gray-50 dark:hover:bg-slate-600'>
     {children}
     <ChevronDownIcon
       aria-hidden='true'
@@ -29,7 +29,7 @@ DropdownMenu.Button = ({ children }: DropdownMenuButtonProps) => (
 );
 
 DropdownMenu.Items = ({ children }: { children: ReactNode }) => (
-  <HeadlessMenuItems className='absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white ring-1 shadow-lg ring-black/5 focus:outline-none'>
+  <HeadlessMenuItems className='absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white dark:bg-slate-700 ring-1 shadow-lg ring-black/5 dark:ring-white/5 focus:outline-none'>
     <div className='py-1'>{children}</div>
   </HeadlessMenuItems>
 );
@@ -49,7 +49,7 @@ DropdownMenu.Item = ({
 }: DropdownMenuItemProps) => (
   <HeadlessMenuItem
     as={as}
-    className={`block w-full px-4 py-2 text-left text-sm text-gray-700 data-[headlessui-state=active]:bg-gray-100 data-[headlessui-state=active]:text-gray-900 ${className}`}
+    className={`block w-full px-4 py-2 text-left text-sm text-gray-700 dark:text-white data-[headlessui-state=active]:bg-gray-100 dark:data-[headlessui-state=active]:bg-slate-700 data-[headlessui-state=active]:text-gray-900 dark:data-[headlessui-state=active]:text-white ${className}`}
     {...rest}
   >
     {children}
