@@ -1,6 +1,7 @@
 import { PlusIcon } from '@heroicons/react/24/solid';
 import { FormEvent } from 'react';
 import DatePicker from './DatePicker';
+import Button from './Button';
 
 type Props = {
   value: string;
@@ -27,7 +28,12 @@ const AddTaskBar = ({
           onChange={(e) => handleTaskNameChange(e.target.value)}
         />
         <DatePicker date={date} onChange={handleDateChange} />
-        <PlusIcon className='absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground w-4 h-4' />
+        <Button
+          type='submit'
+          className='absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground w-4 h-4'
+        >
+          <PlusIcon />
+        </Button>
       </form>
     </div>
   );
