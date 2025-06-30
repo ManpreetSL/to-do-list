@@ -26,9 +26,8 @@ const AddTaskBar = ({
           value={value}
           onChange={(e) => handleTaskNameChange(e.target.value)}
         />
-
-        <PlusIcon className='absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground w-4 h-4' />
         <DatePicker date={date} onChange={handleDateChange} />
+        <PlusIcon className='absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground w-4 h-4' />
       </form>
     </div>
   );
