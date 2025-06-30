@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ToDo } from '../types';
-import { TaskService } from '../services/taskService';
+import { TaskService } from '../../types/taskService';
 import { localStorageTaskService } from '../services/localStorageTaskService';
 
 const useToDos = (taskService: TaskService = localStorageTaskService) => {
