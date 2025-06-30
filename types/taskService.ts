@@ -1,4 +1,4 @@
-import { ToDo } from '../types';
+import { ToDo } from '../src/types';
 
 export interface TaskService {
   loadTasks: () => Promise<ToDo[]>;

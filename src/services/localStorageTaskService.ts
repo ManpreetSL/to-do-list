@@ -1,5 +1,5 @@
 import { SerialisedToDo, ToDo } from '../types';
-import { TaskService } from './taskService';
+import { TaskService } from '../../types/taskService';
 
 const TASKS_KEY = 'toDos';
 
