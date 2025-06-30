@@ -148,17 +148,29 @@ const ToDoList = () => {
                   })}
                 </span>
                 <br />
-                <select
-                  defaultValue={toDo.status}
-                  id={toDo.id.toString()}
-                  name='status'
-                >
-                  {statuses.map((status) => (
-                    <option value={status} key={status}>
-                      {status}
-                    </option>
-                  ))}
-                </select>
+                <DropdownMenu>
+                  <DropdownMenu.Button>{toDo.status}</DropdownMenu.Button>
+                  <DropdownMenu.Items>
+                    {statuses.map((status) => (
+                      <DropdownMenu.Item
+                        as='button'
+                        href='#'
+                        key={status}
+                        onClick={() => {
+                          setToDos((prevToDos) =>
+                            prevToDos.map((toDo2) =>
+                              toDo2.id === toDo.id
+                                ? { ...toDo2, status }
+                                : toDo2
+                            )
+                          );
+                        }}
+                      >
+                        {status}
+                      </DropdownMenu.Item>
+                    ))}
+                  </DropdownMenu.Items>
+                </DropdownMenu>
               </Card>
             </li>
           ))}
