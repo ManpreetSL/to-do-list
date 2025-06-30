@@ -26,6 +26,7 @@ const AddTaskBar = ({
           placeholder='Create a new task'
           value={value}
           onChange={(e) => handleTaskNameChange(e.target.value)}
+          required
         />
         <DatePicker date={date} onChange={handleDateChange} />
         <Button
