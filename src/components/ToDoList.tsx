@@ -11,20 +11,7 @@ import { ToDo } from '../types';
 import useToDos from '../hooks/useToDos';
 
 const statuses = ['Not Started', 'In Progress', 'Complete'];
-const defaultToDos: ToDo[] = [
-  {
-    id: uuidv4(),
-    text: 'Create a to do list',
-    status: 'Complete',
-    dueDate: new Date(Date.now() - 60 * 60 * 1000),
-  },
-  {
-    id: uuidv4(),
-    text: 'Do some Simran',
-    status: 'In Progress',
-    dueDate: new Date(Date.now() + 24 * 60 * 60 * 1000),
-  },
-];
+
 const sortOptions = [
   {
     name: 'Name (ascending)',
@@ -124,7 +111,7 @@ const ToDoList = () => {
       )}
 
       <ul>
-        {(toDos ?? defaultToDos)
+        {toDos
           .filter((toDo) => !filter || toDo.status === filter)
           .filter(
             (toDo) =>

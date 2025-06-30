@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { ToDo } from '../types';
 import { TaskService } from '../../types/taskService';
-import { localStorageTaskService } from '../services/localStorageTaskService';
+import { hybridTaskService } from '../services/hybridTaskService';
 
-const useToDos = (taskService: TaskService = localStorageTaskService) => {
+const useToDos = (taskService: TaskService = hybridTaskService) => {
   const [toDos, setToDos] = useState<ToDo[]>([]);
   const [loaded, setLoaded] = useState(false);
 
